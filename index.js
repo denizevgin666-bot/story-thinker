@@ -1,40 +1,18 @@
-import { extension_settings } from "../../../extensions.js";
-import { saveSettingsDebounced } from "../../../../script.js";
-
-const extensionName = "story-thinker";
-
-const defaultSettings = {
-    enabled: false
-};
-
-const settingsHtml = `
-<div class="story-thinker-settings">
-    <div class="inline-drawer">
-        <div class="inline-drawer-toggle inline-drawer-header">
-            <b>Story Thinker</b>
-            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
-        </div>
-        <div class="inline-drawer-content">
-            <div>
-                <input id="story_thinker_enabled" type="checkbox" />
-                <label for="story_thinker_enabled">Enable Story Thinker</label>
+jQuery(async () => {
+    $("#extensions_settings2").append(`
+        <div class="story-thinker-settings">
+            <div class="inline-drawer">
+                <div class="inline-drawer-toggle inline-drawer-header">
+                    <b>Story Thinker</b>
+                    <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+                </div>
+                <div class="inline-drawer-content">
+                    <p>✅ Story Thinker is alive!</p>
+                </div>
             </div>
-            <p><small>When enabled, instructs the AI to think through clichés and avoid them.</small></p>
         </div>
-    </div>
-</div>`;
-
-async function loadSettings() {
-    extension_settings[extensionName] = extension_settings[extensionName] || {};
-    if (Object.keys(extension_settings[extensionName]).length === 0) {
-        Object.assign(extension_settings[extensionName], defaultSettings);
-    }
-    $("#story_thinker_enabled").prop("checked", extension_settings[extensionName].enabled);
-}
-
-function onEnabledChange(event) {
-    const value = Boolean($(event.target).prop("checked"));
-    extension_settings[extensionName].enabled = value;
+    `);
+});    extension_settings[extensionName].enabled = value;
     saveSettingsDebounced();
 }
 
