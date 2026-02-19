@@ -34,7 +34,7 @@ jQuery(async () => {
     } catch (error) {
         console.error(`[${extensionName}] ❌ Failed to load:`, error);
     }
-});            if (typeof sysMsg.content === 'string') {
+});});            if (typeof sysMsg.content === 'string') {
                 sysMsg.content += '\n\n' + injectionPrompt;
             }
         } else {
