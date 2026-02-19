@@ -1,3 +1,6 @@
+import { extension_settings } from "../../../extensions.js";
+import { saveSettingsDebounced } from "../../../../script.js";
+
 jQuery(async () => {
     $("#extensions_settings2").append(`
         <div class="inline-drawer">
@@ -14,13 +17,12 @@ jQuery(async () => {
         </div>
     `);
 
-    const settings = window.extension_settings = window.extension_settings || {};
-    settings["story-thinker"] = settings["story-thinker"] || { enabled: false };
+    extension_settings["story-thinker"] = extension_settings["story-thinker"] || { enabled: false };
 
-    $("#story_thinker_enabled").prop("checked", settings["story-thinker"].enabled);
+    $("#story_thinker_enabled").prop("checked", extension_settings["story-thinker"].enabled);
 
     $("#story_thinker_enabled").on("input", function() {
-        settings["story-thinker"].enabled = $(this).prop("checked");
-        if (window.saveSettingsDebounced) window.saveSettingsDebounced();
+        extension_settings["story-thinker"].enabled = $(this).prop("checked");
+        saveSettingsDebounced();
     });
 });
