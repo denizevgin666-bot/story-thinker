@@ -2,11 +2,27 @@ import { extension_settings } from "../../../extensions.js";
 import { saveSettingsDebounced } from "../../../../script.js";
 
 const extensionName = "story-thinker";
-const extensionFolderPath = `scripts/extensions/third-party/${extensionName}`;
 
 const defaultSettings = {
     enabled: false
 };
+
+const settingsHtml = `
+<div class="story-thinker-settings">
+    <div class="inline-drawer">
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <b>Story Thinker</b>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+        </div>
+        <div class="inline-drawer-content">
+            <div>
+                <input id="story_thinker_enabled" type="checkbox" />
+                <label for="story_thinker_enabled">Enable Story Thinker</label>
+            </div>
+            <p><small>When enabled, instructs the AI to think through clichés and avoid them.</small></p>
+        </div>
+    </div>
+</div>`;
 
 async function loadSettings() {
     extension_settings[extensionName] = extension_settings[extensionName] || {};
@@ -24,17 +40,11 @@ function onEnabledChange(event) {
 
 jQuery(async () => {
     console.log(`[${extensionName}] Loading...`);
-
-    try {
-        const settingsHtml = await $.get(`${extensionFolderPath}/settings.html`);
-        $("#extensions_settings2").append(settingsHtml);
-        $("#story_thinker_enabled").on("input", onEnabledChange);
-        await loadSettings();
-        console.log(`[${extensionName}] ✅ Loaded successfully`);
-    } catch (error) {
-        console.error(`[${extensionName}] ❌ Failed to load:`, error);
-    }
-});});            if (typeof sysMsg.content === 'string') {
+    $("#extensions_settings2").append(settingsHtml);
+    $("#story_thinker_enabled").on("input", onEnabledChange);
+    await loadSettings();
+    console.log(`[${extensionName}] ✅ Loaded`);
+});});});            if (typeof sysMsg.content === 'string') {
                 sysMsg.content += '\n\n' + injectionPrompt;
             }
         } else {
