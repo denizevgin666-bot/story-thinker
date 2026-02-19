@@ -1,40 +1,13 @@
 jQuery(async () => {
-    $("#extensions_settings2").append(`
-        <div class="story-thinker-settings">
-            <div class="inline-drawer">
-                <div class="inline-drawer-toggle inline-drawer-header">
-                    <b>Story Thinker</b>
-                    <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
-                </div>
-                <div class="inline-drawer-content">
-                    <p>✅ Story Thinker is alive!</p>
-                </div>
-            </div>
+    const html = `
+        <div class="inline-drawer" style="border: 3px solid red; padding: 10px; margin: 10px;">
+            <b>🔴 STORY THINKER TEST - CAN YOU SEE THIS?</b>
         </div>
-    `);
-});    extension_settings[extensionName].enabled = value;
-    saveSettingsDebounced();
-}
-
-jQuery(async () => {
-    console.log(`[${extensionName}] Loading...`);
-    $("#extensions_settings2").append(settingsHtml);
-    $("#story_thinker_enabled").on("input", onEnabledChange);
-    await loadSettings();
-    console.log(`[${extensionName}] ✅ Loaded`);
-});});});            if (typeof sysMsg.content === 'string') {
-                sysMsg.content += '\n\n' + injectionPrompt;
-            }
-        } else {
-            data.messages.unshift({ role: 'system', content: injectionPrompt });
-        }
-    }
-}
-
-async function loadSettings() {
-    extension_settings[extensionName] = extension_settings[extensionName] || {};
-    if (Object.keys(extension_settings[extensionName]).length === 0) {
-        Object.assign(extension_settings[extensionName], defaultSettings);
+    `;
+    $("#extensions_settings").append(html);
+    $("#extensions_settings2").append(html);
+    $("body").append(html);
+});        Object.assign(extension_settings[extensionName], defaultSettings);
     }
     $("#story_thinker_enabled").prop("checked", extension_settings[extensionName].enabled);
 }
